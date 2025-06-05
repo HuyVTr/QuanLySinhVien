@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Trang chủ";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg rounded-4">
+        <div class="card-body p-5">
+            <h1 class="display-4 text-center mb-4 text-primary fw-bold">Hệ thống Quản lý Sinh viên</h1>
+            <p class="lead text-center mb-4">Chào mừng bạn đến với hệ thống quản lý sinh viên đơn giản bằng ASP.NET Core MVC</p>
+
+            <div class="d-flex justify-content-center gap-4">
+                <a asp-controller="Student" asp-action="Index" class="btn btn-primary btn-lg shadow-sm hover-custom">
+                    Quản lý Sinh viên
+                </a>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CSS cho hover effect -->
+<style>
+    .hover-custom:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
+</style>

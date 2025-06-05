@@ -1,0 +1,62 @@
+﻿@model QuanLySinhVien.Models.Student
+
+@{
+    ViewData["Title"] = "Xóa sinh viên";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg rounded-4 mx-auto" style="max-width: 800px;">
+        <div class="card-body p-5">
+            <h2 class="mb-4 text-center fw-bold text-danger">Xóa sinh viên</h2>
+
+            <form asp-action="DeleteConfirmed" method="post">
+                @Html.AntiForgeryToken()
+
+                <input type="hidden" asp-for="MaSV" />
+
+                <div class="mb-3">
+                    <label class="form-label">Họ tên</label>
+                    <p class="form-control-plaintext">@Model.HoTen</p>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Giới tính</label>
+                    <p class="form-control-plaintext">@Model.GioiTinh</p>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Ngày sinh</label>
+                    <p class="form-control-plaintext">@Model.NgaySinh.ToString("dd/MM/yyyy")</p>
+                </div>
+
+                <!-- Hiển thị ảnh hiện tại -->
+                <div class="mb-3">
+                    <label class="form-label">Ảnh hiện tại</label><br />
+                    @if (!string.IsNullOrEmpty(Model.Hinh))
+                    {
+                        <img src="@Url.Content(Model.Hinh)" width="150" class="rounded border shadow-sm" />
+                    }
+                    else
+                    {
+                        <span class="text-muted fst-italic">Không có ảnh</span>
+                    }
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label">Ngành học</label>
+                    <p class="form-control-plaintext">@Model.MaNganh</p>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-danger">
+                        <i class="bi bi-trash"></i> Xóa sinh viên
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary ms-2">
+                        <i class="bi bi-arrow-left-circle"></i> Quay lại danh sách
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

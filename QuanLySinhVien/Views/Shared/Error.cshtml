@@ -1,0 +1,18 @@
+﻿@model QuanLySinhVien.Models.ErrorViewModel
+
+@{
+    ViewData["Title"] = "Lỗi";
+}
+
+<h2 class="text-danger">Có lỗi xảy ra</h2>
+
+@if (Model != null && Model.ShowRequestId)
+{
+    <p><strong>Request ID:</strong> @Model.RequestId</p>
+}
+else
+{
+    <p>Không có ID yêu cầu.</p>
+}
+
+<p><a href="@Url.Action("Index", "Home")">Quay lại trang chủ</a></p>

@@ -1,0 +1,62 @@
+﻿@model QuanLySinhVien.Models.Student
+
+@{
+    ViewData["Title"] = "Thêm sinh viên";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="auth-card shadow-lg rounded-4 p-5 mt-5 mx-auto" style="max-width: 800px;">
+    <h2 class="mb-4 text-center fw-bold text-primary">Thêm mới sinh viên</h2>
+
+    <form asp-action="Create" enctype="multipart/form-data">
+        @Html.AntiForgeryToken()
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label asp-for="MaSV" class="form-label">Mã sinh viên</label>
+                <input asp-for="MaSV" class="form-control" />
+                <span asp-validation-for="MaSV" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="HoTen" class="form-label">Họ tên</label>
+                <input asp-for="HoTen" class="form-control" />
+                <span asp-validation-for="HoTen" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label asp-for="GioiTinh" class="form-label">Giới tính</label>
+                <select asp-for="GioiTinh" class="form-select">
+                    <option value="Nam">Nam</option>
+                    <option value="Nữ">Nữ</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="NgaySinh" class="form-label">Ngày sinh</label>
+                <input asp-for="NgaySinh" class="form-control" type="date" />
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Ảnh sinh viên</label>
+            <input type="file" name="HinhFile" class="form-control" />
+        </div>
+
+        <div class="mb-4">
+            <label asp-for="MaNganh" class="form-label">Ngành học</label>
+            <select asp-for="MaNganh" class="form-select" asp-items="ViewBag.NganhList">
+                <option disabled selected>-- Chọn ngành --</option>
+            </select>
+        </div>
+
+        <div class="text-end">
+            <button type="submit" class="btn btn-success">
+                <i class="bi bi-save2"></i> Lưu
+            </button>
+            <a asp-action="Index" class="btn btn-secondary ms-2">
+                <i class="bi bi-arrow-left-circle"></i> Quay lại
+            </a>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,43 @@
+﻿@model QuanLySinhVien.Models.LoginModel
+
+@{
+    ViewData["Title"] = "Đăng Nhập";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg rounded-4 mx-auto" style="max-width: 500px;">
+        <div class="card-body p-5">
+            <h2 class="mb-4 text-center text-primary">ĐĂNG NHẬP</h2>
+
+            <form asp-action="Login" method="post">
+                @Html.AntiForgeryToken()
+
+                <!-- Mã Sinh Viên -->
+                <div class="mb-3">
+                    <label asp-for="MaSV" class="form-label">Mã sinh viên</label>
+                    <input asp-for="MaSV" class="form-control" placeholder="Nhập mã sinh viên" />
+                    <span asp-validation-for="MaSV" class="text-danger"></span>
+                </div>
+
+                <!-- Nút Đăng Nhập -->
+                <div class="mb-3 text-center">
+                    <button type="submit" class="btn btn-primary btn-lg w-100">
+                        Đăng Nhập
+                    </button>
+                </div>
+
+                <!-- Thông báo lỗi nếu có -->
+                @if (!string.IsNullOrEmpty(ViewData["ErrorMessage"]?.ToString()))
+                {
+                    <div class="alert alert-danger mt-3">
+                        @ViewData["ErrorMessage"]
+                    </div>
+                }
+
+                <div class="text-center mt-4">
+                    <a asp-action="Index" class="btn btn-link">Quay lại trang chủ</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

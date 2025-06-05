@@ -1,0 +1,73 @@
+﻿@model QuanLySinhVien.Models.Student
+
+@{
+    ViewData["Title"] = "Chỉnh sửa sinh viên";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg rounded-4 mx-auto" style="max-width: 800px;">
+        <div class="card-body p-5">
+            <h2 class="mb-4 text-center fw-bold text-warning">Hiệu chỉnh thông tin sinh viên</h2>
+
+            <form asp-action="Edit" enctype="multipart/form-data">
+                @Html.AntiForgeryToken()
+
+                <input type="hidden" asp-for="MaSV" />
+
+                <div class="mb-3">
+                    <label asp-for="HoTen" class="form-label">Họ tên</label>
+                    <input asp-for="HoTen" class="form-control" />
+                    <span asp-validation-for="HoTen" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="GioiTinh" class="form-label">Giới tính</label>
+                    <input asp-for="GioiTinh" class="form-control" />
+                    <span asp-validation-for="GioiTinh" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="NgaySinh" class="form-label">Ngày sinh</label>
+                    <input asp-for="NgaySinh" type="date" class="form-control" />
+                    <span asp-validation-for="NgaySinh" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Ảnh hiện tại</label><br />
+                    @if (!string.IsNullOrEmpty(Model.Hinh))
+                    {
+                        <img src="@Url.Content(Model.Hinh)" width="150" class="rounded border shadow-sm" />
+                    }
+                    else
+                    {
+                        <span class="text-muted fst-italic">Không có ảnh</span>
+                    }
+                </div>
+
+                <div class="mb-3">
+                    <label for="upload" class="form-label">Chọn ảnh mới (nếu cần)</label>
+                    <input type="file" name="upload" class="form-control" />
+                    <input type="hidden" asp-for="Hinh" />
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="MaNganh" class="form-label">Ngành học</label>
+                    <select asp-for="MaNganh" asp-items="ViewBag.NganhList" class="form-select">
+                        <option value="">-- Chọn ngành --</option>
+                    </select>
+                    <span asp-validation-for="MaNganh" class="text-danger"></span>
+                </div>
+
+                <div class="text-end">
+                    <button type="submit" class="btn btn-warning">
+                        <i class="bi bi-pencil-square"></i> Cập nhật
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary ms-2">
+                        <i class="bi bi-arrow-left-circle"></i> Quay lại
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
